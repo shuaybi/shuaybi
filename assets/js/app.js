@@ -13,15 +13,11 @@ import "phoenix_html"
 import Vue from 'vue'
 import router from './router'
 import App from './app.vue'
-import './plugins/vuetify'
+import vuetify from './plugins/vuetify'
 
 new Vue({
   router,
+  vuetify,
   el: "#vue-app",
   render: h => h(App)
 })
-
-// Import local files
-//
-// Local files can be imported directly using relative paths, for example:
-// import socket from "./socket"

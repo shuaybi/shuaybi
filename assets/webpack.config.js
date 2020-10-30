@@ -35,6 +35,10 @@ module.exports = (env, options) => {
     module: {
       rules: [
         {
+          test: /\.styl$/,
+          loader: ['css-loader', 'stylus-loader']
+        },
+        {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
@@ -55,6 +59,7 @@ module.exports = (env, options) => {
         {
           test: /\.s(c|a)ss$/,
           use: [
+            'vue-style-loader',
             'css-loader',
             {
               loader: 'sass-loader',
@@ -63,9 +68,17 @@ module.exports = (env, options) => {
                 implementation: require('sass'),
                 fiber: require('fibers'),
                 indentedSyntax: true // optional
-              }
-            }
-          ]
+              },
+              // Requires sass-loader@^8.0.0
+              options: {
+                implementation: require('sass'),
+                sassOptions: {
+                  fiber: require('fibers'),
+                  indentedSyntax: true // optional
+                },
+              },
+            },
+          ],
         },
         { test: /\.(png|woff|woff2|eot|ttf|svg)$/, use: 'url-loader' }
       ]
